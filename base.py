@@ -1,4 +1,4 @@
-import requests, random, os, json, csv, time, logging
+import requests, random, os, json, csv, time, logging, uuid
 from datetime import timedelta, date, datetime
 from bs4 import BeautifulSoup
 
@@ -49,3 +49,8 @@ class CrawlerBase:
         headers = {'User-Agent': user_agent}
         return requests.get(url,headers=headers)
 
+
+    @staticmethod
+    def csvWriter(filename = str(uuid.uuid4()) + ".csv", mode = "a", encodingtype="utf8"):
+        fileObject = open(filename, mode, newline='', encoding=encodingtype)
+        return csv.writer(fileObject)
