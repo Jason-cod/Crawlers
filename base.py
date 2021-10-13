@@ -38,7 +38,7 @@ user_agent_list = [
 class CrawlerBase:
 
     @staticmethod
-    def getdata(url):
+    def getdata(url, extraheaders=None):
         '''
         Creates a bot request to a URL with Proxy and User Agents using Fake Headers
 
@@ -47,10 +47,18 @@ class CrawlerBase:
         '''
         user_agent = random.choice(user_agent_list)
         headers = {'User-Agent': user_agent}
-        return requests.get(url,headers=headers)
+        if extraheaders != None:
+            if not type(extraheaders) is dict:
+                raise TypeError("Only dictionaries are allowed")
+            else:
+                headers.update(extraheaders)
+
+        return requests.get(url, headers=headers)
 
 
     @staticmethod
     def csvWriter(filename = str(uuid.uuid4()) + ".csv", mode = "a", encodingtype="utf8"):
         fileObject = open(filename, mode, newline='', encoding=encodingtype)
         return csv.writer(fileObject)
+    
+    
