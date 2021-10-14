@@ -9,7 +9,7 @@ apikey = "z9duUaFUiEUYSHs97CU38fcZO7ipOPvm"
 baseURL = "https://apigwext.worldbank.org/dvsvc/v1.0/json/APPLICATION/ADOBE_EXPRNCE_MGR/FIRM/SANCTIONED_FIRM"
 response = CrawlerBase.getdata(baseURL, {'apikey': apikey}).json()
  
-#print((response['response']['ZPROCSUPP'][0]["SUPP_NAME"]))
+
 
 
 print(len(response['response']['ZPROCSUPP']))
